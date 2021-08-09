@@ -46,14 +46,60 @@ button{
   text-transform: capitalize;
   transition: all .2s ease;
   cursor: pointer;
+  padding: 1em
+  ;
 }
 button:hover{
   background-color: var(--primary-light);
 }
+.btn-dark{
+  background-color: rgb(71, 40, 0);
+  border-color: var(--primary);
+}
+.btn-dark:hover{
+  background-color: limegreen;
+}
+
+.pump{
+  height: 100px;
+  width: 180px;
+  position: relative;
+}
+.handle{
+  height: 10px;
+  width: 80px;
+  background-color: orangered;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  transition: all .05s linear;
+}
+.pump:active .handle{
+  top: -20px;
+}
+
+.handle::before{
+  content:"";
+  background-color: orangered;
+  width: 10px;
+  height: 40px;
+  display: block;
+}
+.pump-box {
+  background-color:lightskyblue;
+  height: 100px;
+  width: 80px;  
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  z-index: 2;
+  position: absolute;
+}
 .balloon{
   height: 120px;
   width: 100px;
-  background-color: blue;
+  background-color: rgb(30, 255, 0);
   border-radius: 50%;
   transition: all .2s ease;
   
@@ -85,8 +131,30 @@ button:hover{
 }
 .d-flex{
   display:flex;
+  align-items: center;
+}
+.d-flex.space-around{
+  justify-content: space-around;
 }
 
+.mt-1{
+  margin-top: 1em;
+}
+.mt-2{
+  margin-top: 2em;
+}
+.mt-3{
+  margin-top: 2.5em;
+}
+.mb-1{
+  margin-bottom: 1em;
+}
+.mb-2{
+  margin-bottom: 2em;
+}
+.mb-3{
+  margin-bottom: 2.5em;
+}
 .bg-dark{
   background-color: var(--primary-light);
 }
