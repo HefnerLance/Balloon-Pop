@@ -8,10 +8,12 @@ let inflationRate = 20
 let maxsize = 300
 let highestPopCount = 0
 let currentPopCount = 0
-let gameLength = 5000
+let gameLength = 10000
 let clockId = 0
 let timeremaining = 0
 let currentPlayer = {}
+let currentColor = "orange" 
+let possibleColors = ["orange","green","purple","pink"]
 
 function startGame() {
   document.getElementById("game-controls").classList.remove("hidden")
@@ -40,29 +42,36 @@ function inflate() {
   clickCount++
   height += inflationRate
   width += inflationRate
-
+  checkBallonPop()
+  draw()
+}
+function checkBallonPop(){
   if (height > maxsize) {
     console.log("pop the balloon")
+  let balloonElement = document.getElementById("balloon")
+    balloonElement.classList.remove("currentColor")
+    getRandomColor()
+    balloonElement.classList.add(currentColor)
+    // @ts-ignore
+    document.getElementById("pop-sound").play()
     currentPopCount++
     height = 0
     width = 0
   }
-  draw()
-
+}
+function getRandomColor(){
+  let i= Math.floor(Math.random() * possibleColors.length)
+  currentColor=possibleColors[i]
 
 }
-
 function draw() {
   let balloonElement = document.getElementById("balloon")
   let clickCountElem = document.getElementById("click-count")
   let popCountElem = document.getElementById("pop-count")
   let highestPopCountElem = document.getElementById("high-pop-count")
-
-  let playerNameElem = document.getElementById("player-Name") 
-
+ let playerNameElem = document.getElementById("player-Name") 
   balloonElement.style.width = width + "px"
   balloonElement.style.height = height + "px"
-
   clickCountElem.innerText = clickCount.toString()
   popCountElem.innerText = currentPopCount.toString()
   highestPopCountElem.innerText = currentPlayer.topScore.toString()

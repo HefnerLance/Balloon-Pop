@@ -25,7 +25,7 @@
   </header>
   
   <main class="container card" >   
-    <form class="d-flex space-betweeen hidden" id="player-form" onsubmit="setPlayer(event)">
+    <form class="d-flex space-betweeen" id="player-form" onsubmit="setPlayer(event)">
       <div>
         <label for="name" >Player Name:</label>
         <input type="text" name="playerName" required>
@@ -35,9 +35,20 @@
       </div>        
       <button class="d-flex space-between" type="submit">OK</button>
     </form>
+    <div id="scoreboard" class="card">
+      <h3 class="text-center">Scoreboard</h3>
+      <div class="d-flex space-betweeen">
+        <span>
+          <i class="bi bi-person-circle"></i> 
+          Lance
+        </span>
+        <span>score:10</span>
+
+      </div>
+    </div>
     
-    <!-- todo replace hidden class -->
-    <section id="game" class="game ">
+    
+    <section id="game" class="game hidden">
     <div class="card bg-dark text-light">
         <div class="d-flex space-between">
           <div><i class="bi bi-person-circle"></i><!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->
@@ -51,33 +62,36 @@
         </div>
       </div>
         
-      <div id="main-controls" class= "d-flex space-around mt-1 hidden">
-        <button class= "btn-dark" onclick="changePlayer()">Change Player</button>
+      <div id="main-controls" class= "d-flex space-around mt-1">
+        <button class= "btn-dark" onclick="changePlayer()">Change Player
+        </button>
         <button id="start-button" onclick="startGame()">START GAME
         </button>
       </div>
       <div>
         <span>Time Remaining:</span>
+        <span id="countdown">0</span>
         <div flex>
           <span>Balloons Popped:</span> <span id="pop-count"></span>
       </div>
-        <span id="countdown">0</span>
       </div>
       <!-- to do add hidden to game controls -->
-      <div id="game-controls" class=>
-        <button id="inflateButton" onclick="inflate()">
-          Inflate<span id="click-count">
-          </span>
-        </button>
-      </div>
-      <div></div>
-      <div class="d-flex">
-        <div class="pump">
-          <div class="handle" ></div> 
-          <div class="pump-box"></div>
-
+      <div id="game-controls" class="hidden">      
+        <div class="game-container d-flex">
+          <div class="pump">
+            <div class="handle" ></div> 
+            <div class="pump-box" onclick="inflate()">
+              <span id="click-count">
+              </span>
+            </div>
+          </div>
+          <div id="balloon" class="balloon"></div>
+          <audio id= "pop-sound" src="burst.mp3"></audio>
         </div>
-        <div id="balloon" class="balloon"></div>
+      </div>
+        
+        
+
 
 
       </section>

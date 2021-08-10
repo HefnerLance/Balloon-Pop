@@ -52,6 +52,10 @@ button{
 button:hover{
   background-color: var(--primary-light);
 }
+
+.game-container{
+  height: 300px;
+}
 .btn-dark{
   background-color: rgb(71, 40, 0);
   border-color: var(--primary);
@@ -64,6 +68,7 @@ button:hover{
   height: 100px;
   width: 180px;
   position: relative;
+  align-self: flex-end;
 }
 .handle{
   height: 10px;
@@ -95,6 +100,14 @@ button:hover{
   border-top-left-radius: 20px;
   z-index: 2;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.pump-box span{
+  background-color: rgb(223, 218, 226);
+  padding: .5em;
 }
 .balloon{
   height: 120px;
@@ -102,8 +115,36 @@ button:hover{
   background-color: rgb(30, 255, 0);
   border-radius: 50%;
   transition: all .2s ease;
-  
+  animation: balloon-float 5s  ease-in-out infinite;
+  align-self: flex-end;
+  margin: 0 auto;
+  box-shadow: inset -10px -10px 12px rgba(0, 0, 0, 0.3);
+  background: rgb(83,35,24);
+background: linear-gradient(90deg, rgba(83,35,24,1) 0%, rgba(167,71,12,1) 38%, rgba(255,109,0,1) 100%);
 }
+.balloon.green{
+  filter: hue-rotate(108deg);
+}
+.balloon.blue{
+  filter: hue-rotate(154deg);
+}
+.balloon.purple{
+  filter: hue-rotate(248deg);
+}
+.balloon.pink{
+  filter: hue-rotate(298deg);
+}
+
+  
+  @keyframes balloon-float {
+    0%,100% {
+      transfrom: translateY(-25px) rotate(5deg);
+    }
+    50%{      transfrom: translateY(0px) rotate(-5deg);
+    }
+  }
+  
+
 .card{
   background-color: var(--light);
   padding: 1em;
