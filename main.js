@@ -18,6 +18,8 @@ let possibleColors = ["orange","green","purple","pink"]
 function startGame() {
   document.getElementById("game-controls").classList.remove("hidden")
   document.getElementById("main-controls").classList.add("hidden")
+  document.getElementById("scoreboard").classList.add("hidden")
+
   startclock()
   setTimeout(stopGame, gameLength)
 }
@@ -82,6 +84,7 @@ function stopGame() {
   console.log("The game is over")
   document.getElementById("main-controls").classList.remove("hidden")
   document.getElementById("game-controls").classList.add("hidden")
+  document.getElementById("scoreboard").classList.remove("hidden")
  
   clickCount = 0
   height = 120
@@ -92,6 +95,7 @@ function stopGame() {
   }
   stopclock()
   draw()
+  drawScoreboard()
 
 }
 
@@ -106,21 +110,17 @@ function setPlayer(event) {
   let playerName = form.playerName.value
 
   currentPlayer = players.find(player => player.name == playerName)
-
   if (!currentPlayer) {
     currentPlayer = { name: playerName, topScore: 0 }
     players.push(currentPlayer)
     savePlayers()
   }
-
-
   console.log(currentPlayer)
-
-
   form.reset()
   document.getElementById("game").classList.remove("hidden")
   form.classList.add("hidden")
   draw()
+  drawScoreboard()
 }
 function changePlayer() {
   document.getElementById("player-form").classList.remove("hidden")
@@ -136,3 +136,21 @@ function loadPlayers() {
     players = playersData
   }
 }
+
+function drawScoreboard(){
+  let template= ""
+  players.sort((p1,p2) => p2.topScore-p1.topScore)
+  players.forEach(player => {
+    template += `
+    <div class="dispflex">
+    <span>
+      <i class="bi bi-person-circle"></i> 
+      ${player.name}
+    </span>
+    <span>score:${player.topScore}</span>
+</div>`
+  })
+  document.getElementById("players").innerHTML = template
+}
+
+drawScoreboard()
